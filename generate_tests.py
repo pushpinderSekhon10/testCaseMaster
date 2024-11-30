@@ -1,11 +1,85 @@
 import ast
 import os
+import json
+
+# code to infer the return types for json since not explicitly mentioned
+def infer_return_type(node):
+    """Infers the return type of a function based on its return statements."""
+    if isinstance(node, ast.FunctionDef):
+        for n in node.body:
+            if isinstance(n, ast.Return):
+                # Handle constant return types
+                if isinstance(n.value, ast.Constant):
+                    if isinstance(n.value.value, int):
+                        return 'int'
+                    elif isinstance(n.value.value, float):
+                        return 'float'
+                    elif isinstance(n.value.value, str):
+                        return 'str'
+                    elif n.value.value is None:
+                        return 'None'
+                
+                # Handle more complex expressions like variable names or operations
+                elif isinstance(n.value, ast.BinOp):
+                    # If it's a binary operation (like a + b), assume it's an int
+                    if isinstance(n.value.op, (ast.Add, ast.Sub, ast.Mult, ast.Div)):
+                        return 'int'  # You can adjust this logic based on your needs (e.g., float for division)
+
+                elif isinstance(n.value, ast.Name):
+                    # If it's a variable, we can't infer the return type directly, so we return 'unknown'
+                    return 'unknown'
+
+    # Default to 'None' if no return type can be inferred
+    return 'None'
 
 def parse_source_file(file_path):
     """Parse the target Python file into an Abstract Syntax Tree."""
     with open(file_path, 'r') as file:
         source_code = file.read()
     return ast.parse(source_code)
+
+# function to parse the ast into a json file
+def parse_ast_to_json(file_path):
+    """Parse the AST of a Python file and convert it to a JSON-friendly structure."""
+    with open(file_path, 'r') as f:
+        tree = ast.parse(f.read())
+
+    result = []
+
+    for node in tree.body:
+        if isinstance(node, ast.ClassDef):
+            class_info = {
+                "title": node.name,
+                "attributes": [],  # Can be extended if class attributes are needed
+                "methods": []
+            }
+
+            for class_body in node.body:
+                if isinstance(class_body, ast.FunctionDef):
+                    method_info = {
+                        "title": class_body.name,
+                        "parameters": [arg.arg for arg in class_body.args.args[1:]],  # Skip 'self'
+                        "return_type": infer_return_type(class_body)  # Infer return type
+                    }
+                    class_info["methods"].append(method_info)
+
+            result.append(class_info)
+
+        elif isinstance(node, ast.FunctionDef):
+            function_info = {
+                "title": node.name,
+                "parameters": [arg.arg for arg in node.args.args],
+                "return_type": infer_return_type(node)  # Infer return type
+            }
+            result.append(function_info)
+
+    return result
+
+
+# function to save the parsed file into a json
+def save_json(data, output_file):
+    with open(output_file, 'w') as f:
+        json.dump(data, f, indent=4)
 
 class CodeAnalyzer(ast.NodeVisitor):
     """Traverse the AST to extract functions and classes."""
@@ -95,13 +169,26 @@ def write_test_file(test_code, test_file_path):
 def main(target_file):
     """Orchestrates the analysis and test generation process."""
     module_name = os.path.splitext(os.path.basename(target_file))[0]
+
+    # Step 1: Parse the source file and generate test code
     tree = parse_source_file(target_file)
     analyzer = CodeAnalyzer()
     analyzer.visit(tree)
     test_code = generate_test_code(analyzer, module_name)
+
+    # Step 2: Write the test file
     test_file_name = f'test_{module_name}.py'
     write_test_file(test_code, test_file_name)
     print(f"Generated test file: {test_file_name}")
+
+    # Step 3: Parse the original source file into JSON
+    json_structure = parse_ast_to_json(target_file)
+
+    # Step 4: Save the JSON structure to a file
+    json_output_path = f"{module_name}_ast.json"
+    save_json(json_structure, json_output_path)
+    print(f"JSON structure saved to {json_output_path}")
+
 
 if __name__ == "__main__":
     import sys
@@ -110,3 +197,6 @@ if __name__ == "__main__":
         sys.exit(1)
     target_file = sys.argv[1]
     main(target_file)
+
+
+

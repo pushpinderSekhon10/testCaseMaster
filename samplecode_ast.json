@@ -1,0 +1,40 @@
+[
+    {
+        "title": "add",
+        "parameters": [
+            "a",
+            "b"
+        ],
+        "return_type": "None"
+    },
+    {
+        "title": "subtract",
+        "parameters": [
+            "a",
+            "b"
+        ],
+        "return_type": "int"
+    },
+    {
+        "title": "Calculator",
+        "attributes": [],
+        "methods": [
+            {
+                "title": "multiply",
+                "parameters": [
+                    "a",
+                    "b"
+                ],
+                "return_type": "int"
+            },
+            {
+                "title": "divide",
+                "parameters": [
+                    "a",
+                    "b"
+                ],
+                "return_type": "int"
+            }
+        ]
+    }
+]

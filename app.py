@@ -5,24 +5,8 @@ from streamlit_agraph import agraph, Node, Edge, Config
 import json
 
 
-json_data = [
-    {
-        "title": "Calculator",
-        "attributes": [
-
-        ],
-        "methods": [
-            {
-                "title": "multiply",
-                "parameters": "(self, a, b)"
-            },
-            {
-                "title": "divide",
-                "parameters": "(self, a, b)"
-            }
-        ]
-    }
-]
+with open("test_results.json", "r") as file:
+    json_data = json.load(file)
 
 
 

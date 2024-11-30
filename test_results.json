@@ -1,22 +1,18 @@
 [
     {
-        "test": "test_Calculator_divide",
-        "result": "success"
-    },
-    {
-        "test": "test_Calculator_divide_by_zero",
-        "result": "success"
-    },
-    {
-        "test": "test_Calculator_multiply",
-        "result": "success"
-    },
-    {
-        "test": "test_add",
-        "result": "success"
-    },
-    {
-        "test": "test_subtract",
-        "result": "success"
+        "title" : "Calculator",
+        "attributes" : [
+
+        ],
+        "methods" : [
+            {
+                "title" : "multiply",
+                "parameters" : "(a, b)",
+                "return_type" : "int"
+            },
+            {
+                "title" : "divide"
+            }
+        ]
     }
 ]

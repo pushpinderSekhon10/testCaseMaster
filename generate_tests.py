@@ -3,34 +3,13 @@ import os
 import json
 
 # code to infer the return types for json since not explicitly mentioned
-def infer_return_type(node):
-    """Infers the return type of a function based on its return statements."""
+def infer_return_value(node):
+    """Checks whether a function has a return value or not."""
     if isinstance(node, ast.FunctionDef):
         for n in node.body:
             if isinstance(n, ast.Return):
-                # Handle constant return types
-                if isinstance(n.value, ast.Constant):
-                    if isinstance(n.value.value, int):
-                        return 'int'
-                    elif isinstance(n.value.value, float):
-                        return 'float'
-                    elif isinstance(n.value.value, str):
-                        return 'str'
-                    elif n.value.value is None:
-                        return 'None'
-                
-                # Handle more complex expressions like variable names or operations
-                elif isinstance(n.value, ast.BinOp):
-                    # If it's a binary operation (like a + b), assume it's an int
-                    if isinstance(n.value.op, (ast.Add, ast.Sub, ast.Mult, ast.Div)):
-                        return 'int'  # You can adjust this logic based on your needs (e.g., float for division)
-
-                elif isinstance(n.value, ast.Name):
-                    # If it's a variable, we can't infer the return type directly, so we return 'unknown'
-                    return 'unknown'
-
-    # Default to 'None' if no return type can be inferred
-    return 'None'
+                return 'True'  # Return 'True' as soon as a return statement is found
+    return 'False' 
 
 def parse_source_file(file_path):
     """Parse the target Python file into an Abstract Syntax Tree."""
@@ -59,7 +38,7 @@ def parse_ast_to_json(file_path):
                     method_info = {
                         "title": class_body.name,
                         "parameters": [arg.arg for arg in class_body.args.args[1:]],  # Skip 'self'
-                        "return_type": infer_return_type(class_body)  # Infer return type
+                        "return_type": infer_return_value(class_body)  # Infer return type
                     }
                     class_info["methods"].append(method_info)
 
@@ -69,7 +48,7 @@ def parse_ast_to_json(file_path):
             function_info = {
                 "title": node.name,
                 "parameters": [arg.arg for arg in node.args.args],
-                "return_type": infer_return_type(node)  # Infer return type
+                "return_type": infer_return_value(node)  # Infer return type
             }
             result.append(function_info)
 

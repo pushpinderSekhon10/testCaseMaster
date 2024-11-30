@@ -15,35 +15,64 @@ class CodeAnalyzer(ast.NodeVisitor):
 
     def visit_FunctionDef(self, node):
         """Collect function definitions."""
-        self.functions.append(node)
+        function_info = {
+            'name': node.name,
+            'params': [arg.arg for arg in node.args.args],  # Parameter names
+            'returns': ast.unparse(node.returns) if node.returns else None  # Return type
+        }
+        self.functions.append(function_info)
         self.generic_visit(node)
 
     def visit_ClassDef(self, node):
         """Collect class definitions."""
-        self.classes.append(node)
+        class_info = {
+            'name': node.name,
+            'methods': []
+        }
+        # Extract methods from the class
+        for child in node.body:
+            if isinstance(child, ast.FunctionDef):
+                method_info = {
+                    'name': child.name,
+                    'params': [arg.arg for arg in child.args.args if arg.arg != 'self'],
+                    'returns': ast.unparse(child.returns) if child.returns else None
+                }
+                class_info['methods'].append(method_info)  # Append only when method_info is defined
+        self.classes.append(class_info)  # Append the dictionary, not the node
         self.generic_visit(node)
 
+
+
 def generate_test_code(analyzer, module_name):
-    """Generate test code for the extracted functions and classes."""
     test_methods = []
 
+    # Generate test methods for standalone functions
     for func in analyzer.functions:
+        params = ", ".join(f"{param}=None" for param in func['params'])
+        return_comment = f"# Expected return value of type {func['returns']}" if func['returns'] else "# Expected return value"
         test_method = f'''
-    def test_{func.name}(self):
-        # TODO: Implement test for {func.name}
-        self.assertTrue(False)
+    def test_{func['name']}(self):
+        # TODO: Implement test for {func['name']}
+        {return_comment}
+        result = {module_name}.{func['name']}({params})
+        self.assertEqual(result, None)  # Replace None with the expected result
 '''
         test_methods.append(test_method)
 
+    # Generate test methods for methods inside classes
     for class_node in analyzer.classes:
-        for node in class_node.body:
-            if isinstance(node, ast.FunctionDef):
-                test_method = f'''
-    def test_{class_node.name}_{node.name}(self):
-        # TODO: Implement test for {class_node.name}.{node.name}
-        self.assertTrue(False)
+        for method in class_node['methods']:
+            params = ", ".join(f"{param}=None" for param in method['params'])
+            return_comment = f"# Expected return value of type {method['returns']}" if method['returns'] else "# Expected return value"
+            test_method = f'''
+    def test_{class_node['name']}_{method['name']}(self):
+        # TODO: Implement test for {class_node['name']}.{method['name']}
+        {return_comment}
+        obj = {module_name}.{class_node['name']}()  # Create an instance of the class
+        result = obj.{method['name']}({params})
+        self.assertEqual(result, None)  # Replace None with the expected result
 '''
-                test_methods.append(test_method)
+            test_methods.append(test_method)
 
     # Combine test methods into a test class
     test_class = f'''import unittest
@@ -56,6 +85,8 @@ if __name__ == "__main__":
 '''
     return test_class
 
+
+# writing the test file to a specified file path
 def write_test_file(test_code, test_file_path):
     """Writes the generated test code to a specified file."""
     with open(test_file_path, 'w') as file:

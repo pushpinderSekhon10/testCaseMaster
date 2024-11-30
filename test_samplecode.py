@@ -4,27 +4,41 @@ import samplecode
 class TestSamplecode(unittest.TestCase):
     def test_add(self):
         # TODO: Implement test for add
-        self.assertTrue(False)
+        # Expected return value
+        result = samplecode.add(a=None, b=None)
+        self.assertEqual(result, None)  # Replace None with the expected result
 
     def test_subtract(self):
         # TODO: Implement test for subtract
-        self.assertTrue(False)
+        # Expected return value
+        result = samplecode.subtract(a=None, b=None)
+        self.assertEqual(result, None)  # Replace None with the expected result
 
     def test_multiply(self):
         # TODO: Implement test for multiply
-        self.assertTrue(False)
+        # Expected return value
+        result = samplecode.multiply(self=None, a=None, b=None)
+        self.assertEqual(result, None)  # Replace None with the expected result
 
     def test_divide(self):
         # TODO: Implement test for divide
-        self.assertTrue(False)
+        # Expected return value
+        result = samplecode.divide(self=None, a=None, b=None)
+        self.assertEqual(result, None)  # Replace None with the expected result
 
     def test_Calculator_multiply(self):
         # TODO: Implement test for Calculator.multiply
-        self.assertTrue(False)
+        # Expected return value
+        obj = samplecode.Calculator()  # Create an instance of the class
+        result = obj.multiply(a=None, b=None)
+        self.assertEqual(result, None)  # Replace None with the expected result
 
     def test_Calculator_divide(self):
         # TODO: Implement test for Calculator.divide
-        self.assertTrue(False)
+        # Expected return value
+        obj = samplecode.Calculator()  # Create an instance of the class
+        result = obj.divide(a=None, b=None)
+        self.assertEqual(result, None)  # Replace None with the expected result
 
 
 if __name__ == "__main__":

@@ -17,9 +17,6 @@ def parse_source_file(file_path):
         source_code = file.read()
     return ast.parse(source_code)
 
-<<<<<<< HEAD
-# Function to parse the AST into a JSON file
-=======
 def extract_type(annotation):
     """Extract the type from an annotation node."""
     if annotation:

@@ -21,7 +21,7 @@ def extract_type(annotation):
     """Extract the type from an annotation node."""
     if annotation:
         return ast.unparse(annotation)
-    return "None"  # Default if no type annotation is provided
+    return "Any"  # Default if no type annotation is provided
 
 def extract_type_annotation(annotation):
     """Extracts type annotations from the AST node."""
@@ -29,11 +29,12 @@ def extract_type_annotation(annotation):
         return "Any"  # Default to Any if no annotation
     return ast.unparse(annotation)  # Convert AST node to string
 
-def process_class(node):
+def process_class(node, module_name):
     """Process a class node and return its JSON representation."""
     class_info = {
         "title": node.name,
         "category": "class",
+        "module": module_name,
         "methods": [],
         "inner_classes": []  # To store inner classes
     }
@@ -46,22 +47,22 @@ def process_class(node):
                 "parameters": [
                     {
                         "name": arg.arg,
-                        "type": extract_type(arg.annotation)
+                        "type": node.name if arg.arg == 'self' else extract_type(arg.annotation) or "Any"
                     }
-                    for arg in class_body.args.args[1:]  # Skip 'self'
+                    for arg in class_body.args.args
                 ],
                 "return_type": extract_type(class_body.returns)
             }
             class_info["methods"].append(method_info)
         elif isinstance(class_body, ast.ClassDef):
             # Recursively process inner classes
-            inner_class_info = process_class(class_body)
+            inner_class_info = process_class(class_body, module_name)
             class_info["inner_classes"].append(inner_class_info)
 
     return class_info
 
 # function to parse the ast into a json file
-def parse_ast_to_json(file_path):
+def parse_ast_to_json(file_path, module_name):
     """Parse the AST of a Python file and convert it to a JSON-friendly structure."""
     with open(file_path, 'r') as f:
         tree = ast.parse(f.read())
@@ -70,7 +71,7 @@ def parse_ast_to_json(file_path):
 
     for node in tree.body:
         if isinstance(node, ast.ClassDef):
-            class_info = process_class(node)
+            class_info = process_class(node, module_name)
             result.append(class_info)
         elif isinstance(node, ast.FunctionDef):
             function_info = {
@@ -129,7 +130,7 @@ class CodeAnalyzer(ast.NodeVisitor):
                     'params': [
                         {
                             "name": arg.arg,
-                            "type": extract_type_annotation(arg.annotation)
+                            "type": node.name if arg.arg == 'self' else extract_type(arg.annotation) or "Any"
                         } for arg in child.args.args if arg.arg != 'self'
                     ],
                     'returns': extract_type_annotation(child.returns)
@@ -194,17 +195,18 @@ def process_file(target_file):
     tree = parse_source_file(target_file)
     analyzer = CodeAnalyzer()
     analyzer.visit(tree)
-    test_code = generate_test_code(analyzer, module_name)
+    #test_code = generate_test_code(analyzer, module_name)
 
     # Step 2: Write the test file
-    test_file_name = f'test_{module_name}.py'
-    write_test_file(test_code, test_file_name)
-    print(f"Generated test file: {test_file_name}")
+    #test_file_name = f'test_{module_name}.py'
+    #write_test_file(test_code, test_file_name)
+    #print(f"Generated test file: {test_file_name}")
 
     # Step 3: Parse the original source file into JSON
-    json_structure = parse_ast_to_json(target_file)
+    json_structure = parse_ast_to_json(target_file, module_name)
 
     # Step 4: Save the JSON structure to a file
+    return module_name, json_structure
     json_output_path = f"{module_name}_ast.json"
     save_json(json_structure, json_output_path)
     print(f"JSON structure saved to {json_output_path}")
@@ -215,12 +217,20 @@ def main(target_directory):
         print(f"The provided path '{target_directory}' is not a directory.")
         return
 
+    combined_json = {}
+
     # List all files in the directory
     for filename in os.listdir(target_directory):
         file_path = os.path.join(target_directory, filename)
         if os.path.isfile(file_path) and filename.endswith('.py'):
             print(f"Processing file: {file_path}")
-            process_file(file_path)
+            module_name, json_structure = process_file(file_path)
+            combined_json[module_name] = json_structure
+
+    # Save the combined JSON to a single file
+    output_file = os.path.join(target_directory, 'codebase.json')
+    save_json(combined_json, output_file)
+    print(f"Combined JSON structure saved to {output_file}")
 
 if __name__ == "__main__":
     import sys

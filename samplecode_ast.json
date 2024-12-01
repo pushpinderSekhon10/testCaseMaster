@@ -12,7 +12,7 @@
                 "type": "int"
             }
         ],
-        "return_type": "int"
+        "return_type": "None"
     },
     {
         "title": "subtract",
@@ -20,18 +20,19 @@
         "parameters": [
             {
                 "name": "a",
-                "type": "float"
+                "type": "int"
             },
             {
                 "name": "b",
-                "type": "float"
+                "type": "int"
             }
         ],
-        "return_type": "float"
+        "return_type": "None"
     },
     {
         "title": "Calculator",
         "category": "class",
+        "module": "samplecode",
         "methods": [
             {
                 "title": "multiply",
@@ -46,7 +47,7 @@
                         "type": "int"
                     }
                 ],
-                "return_type": "int"
+                "return_type": "None"
             },
             {
                 "title": "divide",
@@ -61,43 +62,9 @@
                         "type": "int"
                     }
                 ],
-                "return_type": "float"
+                "return_type": "None"
             }
         ],
-        "inner_classes": [
-            {
-                "title": "ScientificCalculator",
-                "category": "class",
-                "methods": [
-                    {
-                        "title": "power",
-                        "category": "method",
-                        "parameters": [
-                            {
-                                "name": "base",
-                                "type": "int"
-                            },
-                            {
-                                "name": "exponent",
-                                "type": "int"
-                            }
-                        ],
-                        "return_type": "int"
-                    },
-                    {
-                        "title": "square_root",
-                        "category": "method",
-                        "parameters": [
-                            {
-                                "name": "number",
-                                "type": "float"
-                            }
-                        ],
-                        "return_type": "float"
-                    }
-                ],
-                "inner_classes": []
-            }
-        ]
+        "inner_classes": []
     }
 ]

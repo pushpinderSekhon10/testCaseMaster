@@ -1,0 +1,179 @@
+[
+    {
+        "title": "infer_return_value",
+        "category": "function",
+        "parameters": [
+            {
+                "name": "node",
+                "type": "None"
+            }
+        ],
+        "return_type": "None"
+    },
+    {
+        "title": "parse_source_file",
+        "category": "function",
+        "parameters": [
+            {
+                "name": "file_path",
+                "type": "None"
+            }
+        ],
+        "return_type": "None"
+    },
+    {
+        "title": "extract_type",
+        "category": "function",
+        "parameters": [
+            {
+                "name": "annotation",
+                "type": "None"
+            }
+        ],
+        "return_type": "None"
+    },
+    {
+        "title": "extract_type_annotation",
+        "category": "function",
+        "parameters": [
+            {
+                "name": "annotation",
+                "type": "None"
+            }
+        ],
+        "return_type": "None"
+    },
+    {
+        "title": "process_class",
+        "category": "function",
+        "parameters": [
+            {
+                "name": "node",
+                "type": "None"
+            },
+            {
+                "name": "module_name",
+                "type": "None"
+            }
+        ],
+        "return_type": "None"
+    },
+    {
+        "title": "parse_ast_to_json",
+        "category": "function",
+        "parameters": [
+            {
+                "name": "file_path",
+                "type": "None"
+            },
+            {
+                "name": "module_name",
+                "type": "None"
+            }
+        ],
+        "return_type": "None"
+    },
+    {
+        "title": "save_json",
+        "category": "function",
+        "parameters": [
+            {
+                "name": "data",
+                "type": "None"
+            },
+            {
+                "name": "output_file",
+                "type": "None"
+            }
+        ],
+        "return_type": "None"
+    },
+    {
+        "title": "CodeAnalyzer",
+        "category": "class",
+        "module": "generate_tests",
+        "methods": [
+            {
+                "title": "__init__",
+                "category": "method",
+                "parameters": [],
+                "return_type": "None"
+            },
+            {
+                "title": "visit_FunctionDef",
+                "category": "method",
+                "parameters": [
+                    {
+                        "name": "node",
+                        "type": "None"
+                    }
+                ],
+                "return_type": "None"
+            },
+            {
+                "title": "visit_ClassDef",
+                "category": "method",
+                "parameters": [
+                    {
+                        "name": "node",
+                        "type": "None"
+                    }
+                ],
+                "return_type": "None"
+            }
+        ],
+        "inner_classes": []
+    },
+    {
+        "title": "generate_test_code",
+        "category": "function",
+        "parameters": [
+            {
+                "name": "analyzer",
+                "type": "None"
+            },
+            {
+                "name": "module_name",
+                "type": "None"
+            }
+        ],
+        "return_type": "None"
+    },
+    {
+        "title": "write_test_file",
+        "category": "function",
+        "parameters": [
+            {
+                "name": "test_code",
+                "type": "None"
+            },
+            {
+                "name": "test_file_path",
+                "type": "None"
+            }
+        ],
+        "return_type": "None"
+    },
+    {
+        "title": "process_file",
+        "category": "function",
+        "parameters": [
+            {
+                "name": "target_file",
+                "type": "None"
+            }
+        ],
+        "return_type": "None"
+    },
+    {
+        "title": "main",
+        "category": "function",
+        "parameters": [
+            {
+                "name": "target_directory",
+                "type": "None"
+            }
+        ],
+        "return_type": "None"
+    }
+]

@@ -1,0 +1,13 @@
+[
+    {
+        "title": "test_dynamic_methods",
+        "category": "function",
+        "parameters": [
+            {
+                "name": "test_case",
+                "type": "None"
+            }
+        ],
+        "return_type": "None"
+    }
+]

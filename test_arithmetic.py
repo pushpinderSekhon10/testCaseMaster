@@ -1,18 +1,18 @@
 import unittest
-import arithmetic
+import samplecode
 
 class TestArithmetic(unittest.TestCase):
     def test_add(self):
         # TODO: Implement test for add
         # Expected return value of type Any
-        result = arithmetic.add({'name': 'a', 'type': 'Any'}=None, {'name': 'b', 'type': 'Any'}=None)
-        self.assertEqual(result, None)  # Replace None with the expected result
+        result = samplecode.add(4, 3)
+        self.assertEqual(result, 7)  # Replace None with the expected result
 
     def test_subtract(self):
         # TODO: Implement test for subtract
         # Expected return value of type Any
-        result = arithmetic.subtract({'name': 'a', 'type': 'Any'}=None, {'name': 'b', 'type': 'Any'}=None)
-        self.assertEqual(result, None)  # Replace None with the expected result
+        result = samplecode.subtract(7, 2)
+        self.assertEqual(result, 5)  # Replace None with the expected result
 
 
 if __name__ == "__main__":

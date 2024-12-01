@@ -1,0 +1,98 @@
+[
+    {
+        "title": "prompt",
+        "category": "function",
+        "parameters": [],
+        "return_type": "None"
+    },
+    {
+        "title": "is_primitive",
+        "category": "function",
+        "parameters": [
+            {
+                "name": "type_name",
+                "type": "None"
+            }
+        ],
+        "return_type": "None"
+    },
+    {
+        "title": "process_json",
+        "category": "function",
+        "parameters": [
+            {
+                "name": "data",
+                "type": "None"
+            }
+        ],
+        "return_type": "None"
+    },
+    {
+        "title": "create_object_from_params",
+        "category": "function",
+        "parameters": [
+            {
+                "name": "parameters",
+                "type": "None"
+            },
+            {
+                "name": "parent_class",
+                "type": "None"
+            }
+        ],
+        "return_type": "None"
+    },
+    {
+        "title": "find_method",
+        "category": "function",
+        "parameters": [
+            {
+                "name": "mod_name",
+                "type": "None"
+            },
+            {
+                "name": "class_name",
+                "type": "None"
+            },
+            {
+                "name": "method_name",
+                "type": "None"
+            }
+        ],
+        "return_type": "None"
+    },
+    {
+        "title": "run_method",
+        "category": "function",
+        "parameters": [
+            {
+                "name": "method",
+                "type": "None"
+            },
+            {
+                "name": "class_obj",
+                "type": "None"
+            }
+        ],
+        "return_type": "None"
+    },
+    {
+        "title": "run_func",
+        "category": "function",
+        "parameters": [
+            {
+                "name": "mod_name",
+                "type": "None"
+            },
+            {
+                "name": "class_name",
+                "type": "None"
+            },
+            {
+                "name": "method_name",
+                "type": "None"
+            }
+        ],
+        "return_type": "None"
+    }
+]

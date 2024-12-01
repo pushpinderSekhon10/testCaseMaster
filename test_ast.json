@@ -1,0 +1,48 @@
+[
+    {
+        "title": "hardcode",
+        "category": "function",
+        "parameters": [],
+        "return_type": "None"
+    },
+    {
+        "title": "find_method",
+        "category": "function",
+        "parameters": [
+            {
+                "name": "mod_name",
+                "type": "None"
+            },
+            {
+                "name": "class_name",
+                "type": "None"
+            },
+            {
+                "name": "method_name",
+                "type": "None"
+            }
+        ],
+        "return_type": "None"
+    },
+    {
+        "title": "myFun",
+        "category": "function",
+        "parameters": [],
+        "return_type": "None"
+    },
+    {
+        "title": "run_method",
+        "category": "function",
+        "parameters": [
+            {
+                "name": "method",
+                "type": "None"
+            },
+            {
+                "name": "class_obj",
+                "type": "None"
+            }
+        ],
+        "return_type": "None"
+    }
+]

@@ -18,7 +18,7 @@ def hardcode():
     # Printing the result 
     print(res)
 
-#!!!!!
+'''
 def find_method(mod_name, class_name, method_name):
     mod = importlib.import_module(mod_name)
     class_obj = getattr(mod, class_name)
@@ -41,3 +41,4 @@ def run_method(method, class_obj, *args):
 
 method, classobj = find_method('samplecode', 'Calculator', 'multiply')
 run_method(method, classobj, 2, 9)
+'''

@@ -1,116 +1,66 @@
 {
-    "test_samplecode": [
+    "client": [
         {
-            "title": "TestSamplecode",
+            "title": "Client",
             "category": "class",
-            "module": "test_samplecode",
+            "module": "client",
             "methods": [
                 {
-                    "title": "test_add",
+                    "title": "__init__",
                     "category": "method",
                     "parameters": [
                         {
                             "name": "self",
-                            "type": "TestSamplecode"
+                            "type": "Client"
+                        },
+                        {
+                            "name": "name",
+                            "type": "Any"
+                        },
+                        {
+                            "name": "deposit",
+                            "type": "Any"
                         }
                     ],
                     "return_type": "Any"
                 },
                 {
-                    "title": "test_subtract",
+                    "title": "withdraw",
                     "category": "method",
                     "parameters": [
                         {
                             "name": "self",
-                            "type": "TestSamplecode"
+                            "type": "Client"
+                        },
+                        {
+                            "name": "amount",
+                            "type": "Any"
                         }
                     ],
                     "return_type": "Any"
                 },
                 {
-                    "title": "test_multiply",
+                    "title": "deposit",
                     "category": "method",
                     "parameters": [
                         {
                             "name": "self",
-                            "type": "TestSamplecode"
+                            "type": "Client"
+                        },
+                        {
+                            "name": "amount",
+                            "type": "Any"
                         }
                     ],
                     "return_type": "Any"
                 },
                 {
-                    "title": "test_divide",
+                    "title": "balance",
                     "category": "method",
                     "parameters": [
                         {
                             "name": "self",
-                            "type": "TestSamplecode"
-                        }
-                    ],
-                    "return_type": "Any"
-                },
-                {
-                    "title": "test_power",
-                    "category": "method",
-                    "parameters": [
-                        {
-                            "name": "self",
-                            "type": "TestSamplecode"
-                        }
-                    ],
-                    "return_type": "Any"
-                },
-                {
-                    "title": "test_square_root",
-                    "category": "method",
-                    "parameters": [
-                        {
-                            "name": "self",
-                            "type": "TestSamplecode"
-                        }
-                    ],
-                    "return_type": "Any"
-                },
-                {
-                    "title": "test_Calculator_multiply",
-                    "category": "method",
-                    "parameters": [
-                        {
-                            "name": "self",
-                            "type": "TestSamplecode"
-                        }
-                    ],
-                    "return_type": "Any"
-                },
-                {
-                    "title": "test_Calculator_divide",
-                    "category": "method",
-                    "parameters": [
-                        {
-                            "name": "self",
-                            "type": "TestSamplecode"
-                        }
-                    ],
-                    "return_type": "Any"
-                },
-                {
-                    "title": "test_ScientificCalculator_power",
-                    "category": "method",
-                    "parameters": [
-                        {
-                            "name": "self",
-                            "type": "TestSamplecode"
-                        }
-                    ],
-                    "return_type": "Any"
-                },
-                {
-                    "title": "test_ScientificCalculator_square_root",
-                    "category": "method",
-                    "parameters": [
-                        {
-                            "name": "self",
-                            "type": "TestSamplecode"
+                            "type": "Client"
                         }
                     ],
                     "return_type": "Any"
@@ -119,118 +69,97 @@
             "inner_classes": []
         }
     ],
-    "test": [
+    "bank": [
         {
-            "title": "hardcode",
-            "category": "function",
-            "parameters": [],
-            "return_type": "Any"
-        },
-        {
-            "title": "find_method",
-            "category": "function",
-            "parameters": [
+            "title": "Bank",
+            "category": "class",
+            "module": "bank",
+            "methods": [
                 {
-                    "name": "mod_name",
-                    "type": "Any"
+                    "title": "update_db",
+                    "category": "method",
+                    "parameters": [
+                        {
+                            "name": "self",
+                            "type": "Bank"
+                        },
+                        {
+                            "name": "client",
+                            "type": "Any"
+                        }
+                    ],
+                    "return_type": "Any"
                 },
                 {
-                    "name": "class_name",
-                    "type": "Any"
-                },
-                {
-                    "name": "method_name",
-                    "type": "Any"
+                    "title": "authentication",
+                    "category": "method",
+                    "parameters": [
+                        {
+                            "name": "self",
+                            "type": "Bank"
+                        },
+                        {
+                            "name": "name",
+                            "type": "Any"
+                        },
+                        {
+                            "name": "account_number",
+                            "type": "Any"
+                        }
+                    ],
+                    "return_type": "Any"
                 }
             ],
-            "return_type": "Any"
-        },
-        {
-            "title": "myFun",
-            "category": "function",
-            "parameters": [],
-            "return_type": "Any"
-        },
-        {
-            "title": "run_method",
-            "category": "function",
-            "parameters": [
-                {
-                    "name": "method",
-                    "type": "Any"
-                },
-                {
-                    "name": "class_obj",
-                    "type": "Any"
-                }
-            ],
-            "return_type": "Any"
+            "inner_classes": []
         }
     ],
-    "dynamic_test": [
-        {
-            "title": "test_dynamic_methods",
-            "category": "function",
-            "parameters": [
-                {
-                    "name": "test_case",
-                    "type": "Any"
-                }
-            ],
-            "return_type": "Any"
-        }
-    ],
-    "samplecode": [
-        {
-            "title": "add",
-            "category": "function",
-            "parameters": [
-                {
-                    "name": "a",
-                    "type": "int"
-                },
-                {
-                    "name": "b",
-                    "type": "int"
-                }
-            ],
-            "return_type": "Any"
-        },
-        {
-            "title": "subtract",
-            "category": "function",
-            "parameters": [
-                {
-                    "name": "a",
-                    "type": "int"
-                },
-                {
-                    "name": "b",
-                    "type": "int"
-                }
-            ],
-            "return_type": "Any"
-        },
+    "calculator": [
         {
             "title": "Calculator",
             "category": "class",
-            "module": "samplecode",
+            "module": "calculator",
             "methods": [
+                {
+                    "title": "add",
+                    "category": "method",
+                    "parameters": [
+                        {
+                            "name": "x",
+                            "type": "Any"
+                        },
+                        {
+                            "name": "y",
+                            "type": "Any"
+                        }
+                    ],
+                    "return_type": "Any"
+                },
+                {
+                    "title": "subtract",
+                    "category": "method",
+                    "parameters": [
+                        {
+                            "name": "x",
+                            "type": "Any"
+                        },
+                        {
+                            "name": "y",
+                            "type": "Any"
+                        }
+                    ],
+                    "return_type": "Any"
+                },
                 {
                     "title": "multiply",
                     "category": "method",
                     "parameters": [
                         {
-                            "name": "self",
-                            "type": "Calculator"
+                            "name": "x",
+                            "type": "Any"
                         },
                         {
-                            "name": "a",
-                            "type": "int"
-                        },
-                        {
-                            "name": "b",
-                            "type": "int"
+                            "name": "y",
+                            "type": "Any"
                         }
                     ],
                     "return_type": "Any"
@@ -240,403 +169,24 @@
                     "category": "method",
                     "parameters": [
                         {
-                            "name": "self",
-                            "type": "Calculator"
+                            "name": "x",
+                            "type": "Any"
                         },
                         {
-                            "name": "a",
-                            "type": "int"
-                        },
-                        {
-                            "name": "b",
-                            "type": "int"
+                            "name": "y",
+                            "type": "Any"
                         }
                     ],
+                    "return_type": "Any"
+                },
+                {
+                    "title": "menu",
+                    "category": "method",
+                    "parameters": [],
                     "return_type": "Any"
                 }
             ],
             "inner_classes": []
-        }
-    ],
-    "testapp2": [
-        {
-            "title": "hide_pages",
-            "category": "function",
-            "parameters": [
-                {
-                    "name": "pages_to_hide",
-                    "type": "Any"
-                }
-            ],
-            "return_type": "Any"
-        }
-    ],
-    "app": [],
-    "generate_tests": [
-        {
-            "title": "infer_return_value",
-            "category": "function",
-            "parameters": [
-                {
-                    "name": "node",
-                    "type": "Any"
-                }
-            ],
-            "return_type": "Any"
-        },
-        {
-            "title": "parse_source_file",
-            "category": "function",
-            "parameters": [
-                {
-                    "name": "file_path",
-                    "type": "Any"
-                }
-            ],
-            "return_type": "Any"
-        },
-        {
-            "title": "extract_type",
-            "category": "function",
-            "parameters": [
-                {
-                    "name": "annotation",
-                    "type": "Any"
-                }
-            ],
-            "return_type": "Any"
-        },
-        {
-            "title": "extract_type_annotation",
-            "category": "function",
-            "parameters": [
-                {
-                    "name": "annotation",
-                    "type": "Any"
-                }
-            ],
-            "return_type": "Any"
-        },
-        {
-            "title": "process_class",
-            "category": "function",
-            "parameters": [
-                {
-                    "name": "node",
-                    "type": "Any"
-                },
-                {
-                    "name": "module_name",
-                    "type": "Any"
-                }
-            ],
-            "return_type": "Any"
-        },
-        {
-            "title": "parse_ast_to_json",
-            "category": "function",
-            "parameters": [
-                {
-                    "name": "file_path",
-                    "type": "Any"
-                },
-                {
-                    "name": "module_name",
-                    "type": "Any"
-                }
-            ],
-            "return_type": "Any"
-        },
-        {
-            "title": "save_json",
-            "category": "function",
-            "parameters": [
-                {
-                    "name": "data",
-                    "type": "Any"
-                },
-                {
-                    "name": "output_file",
-                    "type": "Any"
-                }
-            ],
-            "return_type": "Any"
-        },
-        {
-            "title": "CodeAnalyzer",
-            "category": "class",
-            "module": "generate_tests",
-            "methods": [
-                {
-                    "title": "__init__",
-                    "category": "method",
-                    "parameters": [
-                        {
-                            "name": "self",
-                            "type": "CodeAnalyzer"
-                        }
-                    ],
-                    "return_type": "Any"
-                },
-                {
-                    "title": "visit_FunctionDef",
-                    "category": "method",
-                    "parameters": [
-                        {
-                            "name": "self",
-                            "type": "CodeAnalyzer"
-                        },
-                        {
-                            "name": "node",
-                            "type": "Any"
-                        }
-                    ],
-                    "return_type": "Any"
-                },
-                {
-                    "title": "visit_ClassDef",
-                    "category": "method",
-                    "parameters": [
-                        {
-                            "name": "self",
-                            "type": "CodeAnalyzer"
-                        },
-                        {
-                            "name": "node",
-                            "type": "Any"
-                        }
-                    ],
-                    "return_type": "Any"
-                }
-            ],
-            "inner_classes": []
-        },
-        {
-            "title": "generate_test_code",
-            "category": "function",
-            "parameters": [
-                {
-                    "name": "analyzer",
-                    "type": "Any"
-                },
-                {
-                    "name": "module_name",
-                    "type": "Any"
-                }
-            ],
-            "return_type": "Any"
-        },
-        {
-            "title": "write_test_file",
-            "category": "function",
-            "parameters": [
-                {
-                    "name": "test_code",
-                    "type": "Any"
-                },
-                {
-                    "name": "test_file_path",
-                    "type": "Any"
-                }
-            ],
-            "return_type": "Any"
-        },
-        {
-            "title": "process_file",
-            "category": "function",
-            "parameters": [
-                {
-                    "name": "target_file",
-                    "type": "Any"
-                }
-            ],
-            "return_type": "Any"
-        },
-        {
-            "title": "main",
-            "category": "function",
-            "parameters": [
-                {
-                    "name": "target_directory",
-                    "type": "Any"
-                }
-            ],
-            "return_type": "Any"
-        }
-    ],
-    "test_arithmetic": [
-        {
-            "title": "TestArithmetic",
-            "category": "class",
-            "module": "test_arithmetic",
-            "methods": [
-                {
-                    "title": "test_add",
-                    "category": "method",
-                    "parameters": [
-                        {
-                            "name": "self",
-                            "type": "TestArithmetic"
-                        }
-                    ],
-                    "return_type": "Any"
-                },
-                {
-                    "title": "test_subtract",
-                    "category": "method",
-                    "parameters": [
-                        {
-                            "name": "self",
-                            "type": "TestArithmetic"
-                        }
-                    ],
-                    "return_type": "Any"
-                }
-            ],
-            "inner_classes": []
-        }
-    ],
-    "gpt": [
-        {
-            "title": "prompt",
-            "category": "function",
-            "parameters": [],
-            "return_type": "Any"
-        },
-        {
-            "title": "is_primitive",
-            "category": "function",
-            "parameters": [
-                {
-                    "name": "type_name",
-                    "type": "Any"
-                }
-            ],
-            "return_type": "Any"
-        },
-        {
-            "title": "process_json",
-            "category": "function",
-            "parameters": [
-                {
-                    "name": "data",
-                    "type": "Any"
-                }
-            ],
-            "return_type": "Any"
-        },
-        {
-            "title": "create_object_from_params",
-            "category": "function",
-            "parameters": [
-                {
-                    "name": "parameters",
-                    "type": "Any"
-                },
-                {
-                    "name": "parent_class",
-                    "type": "Any"
-                }
-            ],
-            "return_type": "Any"
-        },
-        {
-            "title": "find_method",
-            "category": "function",
-            "parameters": [
-                {
-                    "name": "mod_name",
-                    "type": "Any"
-                },
-                {
-                    "name": "class_name",
-                    "type": "Any"
-                },
-                {
-                    "name": "method_name",
-                    "type": "Any"
-                }
-            ],
-            "return_type": "Any"
-        },
-        {
-            "title": "run_method",
-            "category": "function",
-            "parameters": [
-                {
-                    "name": "method",
-                    "type": "Any"
-                },
-                {
-                    "name": "class_obj",
-                    "type": "Any"
-                }
-            ],
-            "return_type": "Any"
-        },
-        {
-            "title": "run_func",
-            "category": "function",
-            "parameters": [
-                {
-                    "name": "mod_name",
-                    "type": "Any"
-                },
-                {
-                    "name": "class_name",
-                    "type": "Any"
-                },
-                {
-                    "name": "method_name",
-                    "type": "Any"
-                }
-            ],
-            "return_type": "Any"
-        }
-    ],
-    "unit_tester": [
-        {
-            "title": "TestArithmetic",
-            "category": "class",
-            "module": "unit_tester",
-            "methods": [
-                {
-                    "title": "test",
-                    "category": "method",
-                    "parameters": [
-                        {
-                            "name": "self",
-                            "type": "TestArithmetic"
-                        },
-                        {
-                            "name": "mod_name",
-                            "type": "Any"
-                        },
-                        {
-                            "name": "class_name",
-                            "type": "Any"
-                        },
-                        {
-                            "name": "method_name",
-                            "type": "Any"
-                        },
-                        {
-                            "name": "expected",
-                            "type": "Any"
-                        }
-                    ],
-                    "return_type": "Any"
-                }
-            ],
-            "inner_classes": []
-        }
-    ],
-    "testapp": [
-        {
-            "title": "page2",
-            "category": "function",
-            "parameters": [],
-            "return_type": "Any"
         }
     ]
 }

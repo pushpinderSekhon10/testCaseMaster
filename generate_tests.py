@@ -228,7 +228,7 @@ def main(target_directory):
             combined_json[module_name] = json_structure
 
     # Save the combined JSON to a single file
-    output_file = os.path.join(target_directory, 'codebase.json')
+    output_file = os.path.join('.', 'codebase.json')
     save_json(combined_json, output_file)
     print(f"Combined JSON structure saved to {output_file}")
 

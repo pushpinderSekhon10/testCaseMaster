@@ -1,8 +1,9 @@
 from openai import OpenAI
 from dotenv import load_dotenv
-import os
+import os, io, sys, pytest
 import re
 import importlib
+import dynamic_test
 
 load_dotenv()
 
@@ -88,14 +89,40 @@ def create_object_from_params(parameters, parent_class=None):
 
 def find_method(mod_name, class_name, method_name):
         mod = importlib.import_module(mod_name)
-        class_obj = getattr(mod, class_name)
-        method = getattr(class_obj, method_name)
-        return method, class_obj
+        if class_name:
+            class_obj = getattr(mod, class_name)
+            #get the method from the class
+            method = getattr(class_obj, method_name)
+            return method, class_obj
+        else:
+            #get the function from the module
+            method = getattr(mod, method_name)
+            return method, None
 
 def run_method(method, class_obj, *args):
-    return method(class_obj, *args)
+    if class_obj:
+        return method(class_obj, *args)
+    else:
+        return method(*args)
 
 def run_func(mod_name, class_name, method_name, *args):
         # Expected return value of type Any
         method, class_obj = find_method(mod_name, class_name, method_name)
         return run_method(method, class_obj, *args)
+
+#hardcoded tests
+def run_tests():
+    # Capture the output of pytest
+    buffer = io.StringIO()
+    # Redirect stdout to the buffer
+    sys.stdout = buffer
+    
+    # Run pytest
+    exit = pytest.main(['dynamic_test.py', '-v'])
+    
+    # Reset stdout
+    sys.stdout = sys.__stdout__
+    
+    # Get the test results from the buffer
+    test_output = buffer.getvalue()
+    return test_output, exit

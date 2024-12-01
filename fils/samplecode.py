@@ -1,5 +1,3 @@
-<<<<<<< HEAD:fils/samplecode.py
-=======
 # sample_code.py
 
 def add(a: int, b: int) -> int:
@@ -9,7 +7,6 @@ def add(a: int, b: int) -> int:
 def subtract(a: float, b: float) -> float:
     """Subtract the second number from the first."""
     return a - b
->>>>>>> c15e9c9 (Added parameter and return type to json):samplecode.py
 
 class Calculator:
     """A simple calculator class."""

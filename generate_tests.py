@@ -61,7 +61,6 @@ def process_class(node):
     return class_info
 
 # function to parse the ast into a json file
->>>>>>> c15e9c9 (Added parameter and return type to json)
 def parse_ast_to_json(file_path):
     """Parse the AST of a Python file and convert it to a JSON-friendly structure."""
     with open(file_path, 'r') as f:
@@ -139,10 +138,6 @@ class CodeAnalyzer(ast.NodeVisitor):
         self.classes.append(class_info)
         self.generic_visit(node)
 
-<<<<<<< HEAD
-=======
-
->>>>>>> c15e9c9 (Added parameter and return type to json)
 def generate_test_code(analyzer, module_name):
     test_methods = []
 

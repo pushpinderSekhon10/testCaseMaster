@@ -1,7 +1,5 @@
 [
     {
-<<<<<<< HEAD
-=======
         "title": "add",
         "category": "function",
         "parameters": [
@@ -32,7 +30,6 @@
         "return_type": "float"
     },
     {
->>>>>>> c15e9c9 (Added parameter and return type to json)
         "title": "Calculator",
         "category": "class",
         "methods": [

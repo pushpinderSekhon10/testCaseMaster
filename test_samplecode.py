@@ -2,8 +2,6 @@ import unittest
 import samplecode
 
 class TestSamplecode(unittest.TestCase):
-<<<<<<< HEAD
-=======
     def test_add(self):
         # TODO: Implement test for add
         # Expected return value of type int
@@ -16,7 +14,6 @@ class TestSamplecode(unittest.TestCase):
         result = samplecode.subtract({'name': 'a', 'type': 'float'}=None, {'name': 'b', 'type': 'float'}=None)
         self.assertEqual(result, None)  # Replace None with the expected result
 
->>>>>>> c15e9c9 (Added parameter and return type to json)
     def test_multiply(self):
         # TODO: Implement test for multiply
         # Expected return value of type int

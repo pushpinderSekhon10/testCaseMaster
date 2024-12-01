@@ -1,18 +1,32 @@
 [
     {
         "title": "add",
+        "category": "function",
         "parameters": [
-            "a",
-            "b"
+            {
+                "name": "a",
+                "type": "None"
+            },
+            {
+                "name": "b",
+                "type": "None"
+            }
         ],
-        "return_type": "True"
+        "return_type": "None"
     },
     {
         "title": "subtract",
+        "category": "function",
         "parameters": [
-            "a",
-            "b"
+            {
+                "name": "a",
+                "type": "None"
+            },
+            {
+                "name": "b",
+                "type": "None"
+            }
         ],
-        "return_type": "True"
+        "return_type": "None"
     }
 ]

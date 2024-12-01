@@ -2,7 +2,7 @@ import ast
 import os
 import json
 
-# code to infer the return types for json since not explicitly mentioned
+# Code to infer the return types for JSON since not explicitly mentioned
 def infer_return_value(node):
     """Checks whether a function has a return value or not."""
     if isinstance(node, ast.FunctionDef):
@@ -17,7 +17,7 @@ def parse_source_file(file_path):
         source_code = file.read()
     return ast.parse(source_code)
 
-# function to parse the ast into a json file
+# Function to parse the AST into a JSON file
 def parse_ast_to_json(file_path):
     """Parse the AST of a Python file and convert it to a JSON-friendly structure."""
     with open(file_path, 'r') as f:
@@ -54,8 +54,7 @@ def parse_ast_to_json(file_path):
 
     return result
 
-
-# function to save the parsed file into a json
+# Function to save the parsed file into a JSON
 def save_json(data, output_file):
     with open(output_file, 'w') as f:
         json.dump(data, f, indent=4)
@@ -90,11 +89,9 @@ class CodeAnalyzer(ast.NodeVisitor):
                     'params': [arg.arg for arg in child.args.args if arg.arg != 'self'],
                     'returns': ast.unparse(child.returns) if child.returns else None
                 }
-                class_info['methods'].append(method_info)  # Append only when method_info is defined
-        self.classes.append(class_info)  # Append the dictionary, not the node
+                class_info['methods'].append(method_info)
+        self.classes.append(class_info)
         self.generic_visit(node)
-
-
 
 def generate_test_code(analyzer, module_name):
     test_methods = []
@@ -138,15 +135,14 @@ if __name__ == "__main__":
 '''
     return test_class
 
-
-# writing the test file to a specified file path
+# Writing the test file to a specified file path
 def write_test_file(test_code, test_file_path):
     """Writes the generated test code to a specified file."""
     with open(test_file_path, 'w') as file:
         file.write(test_code)
 
-def main(target_file):
-    """Orchestrates the analysis and test generation process."""
+def process_file(target_file):
+    """Processes a single file to generate test code and JSON structure."""
     module_name = os.path.splitext(os.path.basename(target_file))[0]
 
     # Step 1: Parse the source file and generate test code
@@ -168,14 +164,23 @@ def main(target_file):
     save_json(json_structure, json_output_path)
     print(f"JSON structure saved to {json_output_path}")
 
+def main(target_directory):
+    """Processes all .py files in the target directory."""
+    if not os.path.isdir(target_directory):
+        print(f"The provided path '{target_directory}' is not a directory.")
+        return
+
+    # List all files in the directory
+    for filename in os.listdir(target_directory):
+        file_path = os.path.join(target_directory, filename)
+        if os.path.isfile(file_path) and filename.endswith('.py'):
+            print(f"Processing file: {file_path}")
+            process_file(file_path)
 
 if __name__ == "__main__":
     import sys
     if len(sys.argv) != 2:
-        print("Usage: python generate_tests.py <target_python_file.py>")
+        print("Usage: python generate_tests.py <target_directory>")
         sys.exit(1)
-    target_file = sys.argv[1]
-    main(target_file)
-
-
-
+    target_directory = sys.argv[1]
+    main(target_directory)

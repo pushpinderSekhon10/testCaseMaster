@@ -1,23 +1,105 @@
 [
     {
+<<<<<<< HEAD
+=======
+        "title": "add",
+        "category": "function",
+        "parameters": [
+            {
+                "name": "a",
+                "type": "int"
+            },
+            {
+                "name": "b",
+                "type": "int"
+            }
+        ],
+        "return_type": "int"
+    },
+    {
+        "title": "subtract",
+        "category": "function",
+        "parameters": [
+            {
+                "name": "a",
+                "type": "float"
+            },
+            {
+                "name": "b",
+                "type": "float"
+            }
+        ],
+        "return_type": "float"
+    },
+    {
+>>>>>>> c15e9c9 (Added parameter and return type to json)
         "title": "Calculator",
-        "attributes": [],
+        "category": "class",
         "methods": [
             {
                 "title": "multiply",
+                "category": "method",
                 "parameters": [
-                    "a",
-                    "b"
+                    {
+                        "name": "a",
+                        "type": "int"
+                    },
+                    {
+                        "name": "b",
+                        "type": "int"
+                    }
                 ],
-                "return_type": "True"
+                "return_type": "int"
             },
             {
                 "title": "divide",
+                "category": "method",
                 "parameters": [
-                    "a",
-                    "b"
+                    {
+                        "name": "a",
+                        "type": "int"
+                    },
+                    {
+                        "name": "b",
+                        "type": "int"
+                    }
                 ],
-                "return_type": "True"
+                "return_type": "float"
+            }
+        ],
+        "inner_classes": [
+            {
+                "title": "ScientificCalculator",
+                "category": "class",
+                "methods": [
+                    {
+                        "title": "power",
+                        "category": "method",
+                        "parameters": [
+                            {
+                                "name": "base",
+                                "type": "int"
+                            },
+                            {
+                                "name": "exponent",
+                                "type": "int"
+                            }
+                        ],
+                        "return_type": "int"
+                    },
+                    {
+                        "title": "square_root",
+                        "category": "method",
+                        "parameters": [
+                            {
+                                "name": "number",
+                                "type": "float"
+                            }
+                        ],
+                        "return_type": "float"
+                    }
+                ],
+                "inner_classes": []
             }
         ]
     }

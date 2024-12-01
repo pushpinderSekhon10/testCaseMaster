@@ -8,8 +8,8 @@ def infer_return_value(node):
     if isinstance(node, ast.FunctionDef):
         for n in node.body:
             if isinstance(n, ast.Return):
-                return 'True'  # Return 'True' as soon as a return statement is found
-    return 'False' 
+                return 'True'
+    return 'False'
 
 def parse_source_file(file_path):
     """Parse the target Python file into an Abstract Syntax Tree."""
@@ -17,7 +17,54 @@ def parse_source_file(file_path):
         source_code = file.read()
     return ast.parse(source_code)
 
+<<<<<<< HEAD
 # Function to parse the AST into a JSON file
+=======
+def extract_type(annotation):
+    """Extract the type from an annotation node."""
+    if annotation:
+        return ast.unparse(annotation)
+    return "None"  # Default if no type annotation is provided
+
+def extract_type_annotation(annotation):
+    """Extracts type annotations from the AST node."""
+    if annotation is None:
+        return "Any"  # Default to Any if no annotation
+    return ast.unparse(annotation)  # Convert AST node to string
+
+def process_class(node):
+    """Process a class node and return its JSON representation."""
+    class_info = {
+        "title": node.name,
+        "category": "class",
+        "methods": [],
+        "inner_classes": []  # To store inner classes
+    }
+
+    for class_body in node.body:
+        if isinstance(class_body, ast.FunctionDef):
+            method_info = {
+                "title": class_body.name,
+                "category": "method",
+                "parameters": [
+                    {
+                        "name": arg.arg,
+                        "type": extract_type(arg.annotation)
+                    }
+                    for arg in class_body.args.args[1:]  # Skip 'self'
+                ],
+                "return_type": extract_type(class_body.returns)
+            }
+            class_info["methods"].append(method_info)
+        elif isinstance(class_body, ast.ClassDef):
+            # Recursively process inner classes
+            inner_class_info = process_class(class_body)
+            class_info["inner_classes"].append(inner_class_info)
+
+    return class_info
+
+# function to parse the ast into a json file
+>>>>>>> c15e9c9 (Added parameter and return type to json)
 def parse_ast_to_json(file_path):
     """Parse the AST of a Python file and convert it to a JSON-friendly structure."""
     with open(file_path, 'r') as f:
@@ -27,28 +74,20 @@ def parse_ast_to_json(file_path):
 
     for node in tree.body:
         if isinstance(node, ast.ClassDef):
-            class_info = {
-                "title": node.name,
-                "attributes": [],  # Can be extended if class attributes are needed
-                "methods": []
-            }
-
-            for class_body in node.body:
-                if isinstance(class_body, ast.FunctionDef):
-                    method_info = {
-                        "title": class_body.name,
-                        "parameters": [arg.arg for arg in class_body.args.args[1:]],  # Skip 'self'
-                        "return_type": infer_return_value(class_body)  # Infer return type
-                    }
-                    class_info["methods"].append(method_info)
-
+            class_info = process_class(node)
             result.append(class_info)
-
         elif isinstance(node, ast.FunctionDef):
             function_info = {
                 "title": node.name,
-                "parameters": [arg.arg for arg in node.args.args],
-                "return_type": infer_return_value(node)  # Infer return type
+                "category": "function",
+                "parameters": [
+                    {
+                        "name": arg.arg,
+                        "type": extract_type(arg.annotation)
+                    }
+                    for arg in node.args.args
+                ],
+                "return_type": extract_type(node.returns)
             }
             result.append(function_info)
 
@@ -69,8 +108,13 @@ class CodeAnalyzer(ast.NodeVisitor):
         """Collect function definitions."""
         function_info = {
             'name': node.name,
-            'params': [arg.arg for arg in node.args.args],  # Parameter names
-            'returns': ast.unparse(node.returns) if node.returns else None  # Return type
+            'params': [
+                {
+                    "name": arg.arg,
+                    "type": extract_type_annotation(arg.annotation)
+                } for arg in node.args.args
+            ],
+            'returns': extract_type_annotation(node.returns)
         }
         self.functions.append(function_info)
         self.generic_visit(node)
@@ -86,13 +130,22 @@ class CodeAnalyzer(ast.NodeVisitor):
             if isinstance(child, ast.FunctionDef):
                 method_info = {
                     'name': child.name,
-                    'params': [arg.arg for arg in child.args.args if arg.arg != 'self'],
-                    'returns': ast.unparse(child.returns) if child.returns else None
+                    'params': [
+                        {
+                            "name": arg.arg,
+                            "type": extract_type_annotation(arg.annotation)
+                        } for arg in child.args.args if arg.arg != 'self'
+                    ],
+                    'returns': extract_type_annotation(child.returns)
                 }
                 class_info['methods'].append(method_info)
         self.classes.append(class_info)
         self.generic_visit(node)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> c15e9c9 (Added parameter and return type to json)
 def generate_test_code(analyzer, module_name):
     test_methods = []
 

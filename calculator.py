@@ -1,11 +1,14 @@
 # Program make a simple calculator that can add, subtract, multiply and divide using functions
 
 # define functions
-class Calculator:
-   def add(x, y):
+
+def add(x, y):
       """This function adds two numbers"""
 
       return x + y
+
+
+class Calculator:
 
    def subtract(x, y):
       """This function subtracts two numbers"""
